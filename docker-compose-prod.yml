@@ -3,11 +3,14 @@ version: "3.8"
 services:
   postgres:
     container_name: runes-postgres
-    image: runes_postgres
+    build: 
+      context: ../postgres
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=Qwerty123
+    volumes:
+      - ../postgres/data:/var/lib/postgresql/data
     healthcheck:
       test: 'psql -U divination forecasts -c "SELECT 1"'
       timeout: 10s
@@ -15,9 +18,9 @@ services:
       start_period: 10s
       retries: 5
 
-
   api:
-    image: runes_api
+    build: 
+      context: ../forecast-backend
     container_name: runes-api
     ports:
       - "8000:8000"
@@ -26,8 +29,8 @@ services:
         condition: service_healthy
   
   client:
-    image: runes_client
+    build:
+      context: ../forecast-client
     container_name: runes-client
     ports:
       - "3000:3000"
-  
