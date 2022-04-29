@@ -23,7 +23,7 @@ services:
     ports:
       - "8000:8000"
     volumes:
-      - ./forecast-backend:/app
+      - ../forecast-backend:/app
       - /app/dist
     depends_on:
       postgres:
@@ -36,6 +36,6 @@ services:
     ports:
       - "3000:3000"
     volumes:
+      - ../forecast-client:/app
       - /app/node_modules
-      - ../forecast-react:/app
   
