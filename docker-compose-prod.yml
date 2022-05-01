@@ -4,7 +4,7 @@ services:
   postgres:
     container_name: runes-postgres
     build: 
-      context: ../postgres
+      context: ../runes-postgres
     ports:
       - "5432:5432"
     environment:
@@ -20,7 +20,7 @@ services:
 
   api:
     build: 
-      context: ../forecast-backend
+      context: ../runes-api
     container_name: runes-api
     ports:
       - "8000:8000"
@@ -30,7 +30,7 @@ services:
   
   client:
     build:
-      context: ../forecast-client
+      context: ../runes-client
       dockerfile: Dockerfile.prod
     container_name: runes-client
     ports:
