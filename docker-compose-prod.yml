@@ -10,7 +10,7 @@ services:
     environment:
       - POSTGRES_PASSWORD=Qwerty123
     volumes:
-      - ../postgres/data:/var/lib/postgresql/data
+      - ../runes-postgres/data:/var/lib/postgresql/data
     healthcheck:
       test: 'psql -U divination forecasts -c "SELECT 1"'
       timeout: 10s
